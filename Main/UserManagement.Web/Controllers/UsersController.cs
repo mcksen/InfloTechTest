@@ -33,12 +33,15 @@ public class UsersController : Controller
 
     private ViewResult GetViewResult(IEnumerable<User> users)
     {
+
         var items = users.Select(p => new UserListItemViewModel
         {
+
             Id = p.Id,
             Forename = p.Forename,
             Surname = p.Surname,
             Email = p.Email,
+            DateOfBirth = p.DateOfBirth.ToString("MM/dd/yyyy"),
             IsActive = p.IsActive
         });
 
@@ -47,6 +50,6 @@ public class UsersController : Controller
             Items = items.ToList()
         };
 
-        return View("List", model);
+        return View(nameof(List), model);
     }
 }
