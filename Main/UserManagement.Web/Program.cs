@@ -3,12 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Westwind.AspNetCore.Markdown;
 
-Console.WriteLine("hi");
 
-for (int i = 0; i < args.Length; i++)
-{
-    Console.WriteLine(args[i]);
-}
 
 var builder = WebApplication.CreateBuilder(args);
 

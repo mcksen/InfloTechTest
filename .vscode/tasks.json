@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/MASTER Inflo.TechTest.AspNetCore OCT 2023 - Copy/UserManagement.sln",
+                "${workspaceFolder}/Main/UserManagement.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/MASTER Inflo.TechTest.AspNetCore OCT 2023 - Copy/UserManagement.sln",
+                "${workspaceFolder}/Main/UserManagement.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/MASTER Inflo.TechTest.AspNetCore OCT 2023 - Copy/UserManagement.sln"
+                "${workspaceFolder}/Main/UserManagement.sln"
             ],
             "problemMatcher": "$msCompile"
         }

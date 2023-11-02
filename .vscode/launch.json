@@ -9,9 +9,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/MASTER Inflo.TechTest.AspNetCore OCT 2023 - Copy/UserManagement.Web/bin/Debug/net7.0/UserManagement.Web.dll",
+            "program": "${workspaceFolder}/Main/UserManagement.Web/bin/Debug/net7.0/UserManagement.Web.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/MASTER Inflo.TechTest.AspNetCore OCT 2023 - Copy/UserManagement.Web",
+            "cwd": "${workspaceFolder}/Main/UserManagement.Web",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",
