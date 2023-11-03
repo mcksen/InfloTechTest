@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"dotnet.defaultSolution": "Main/UserManagement.sln",
+		"files.exclude": {
+			"**/*.Tests/": true,
+			"**/bin/": true,
+			"**/obj/": true
+		}
+	}
+}

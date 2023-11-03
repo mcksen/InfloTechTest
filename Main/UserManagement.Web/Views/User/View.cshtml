@@ -1,0 +1,47 @@
+@model UserManagement.Web.Models.Users.UserViewModel
+
+<h2>User View</h2>
+<div class="table-responsive">
+    <table class="table table-">
+        <br>
+        <br>
+        <tbody>
+
+            <tr>
+                <th>Forename</th>
+                <td>@Model.Forename</td>
+            </tr>
+            <tr>
+                <th>Surname</th>
+                <td>@Model.Surname</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>@Model.Email</td>
+            </tr>
+            <tr>
+                <th>DateOfBirth</th>
+                <td>@Model.DateOfBirth</td>
+            </tr>
+            <tr>
+                <th>Account Active</th>
+                <td>@Model.IsActive</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>
+<br>
+<br>
+<div>
+    <div class="btn-group" role="group">
+
+        <a asp-controller="user" asp-action="edit" class="btn btn-primary float-end" style="margin: 20px;">Edit</a>
+
+        <a asp-controller="user" asp-action="delete" class="btn btn-primary float-end" style="margin: 20px;">Delete</a>
+
+    </div>
+
+
+</div>
