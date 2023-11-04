@@ -41,7 +41,7 @@ public class UsersController : Controller
             Forename = p.Forename,
             Surname = p.Surname,
             Email = p.Email,
-            DateOfBirth = p.DateOfBirth.ToString("MM/dd/yyyy"),
+            DateOfBirth = p.DateOfBirth.ToString("dd/MM/yyyy"),
             IsActive = p.IsActive
         });
 

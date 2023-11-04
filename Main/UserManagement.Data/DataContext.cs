@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using UserManagement.Models;
@@ -32,6 +32,11 @@ public class DataContext : DbContext, IDataContext
 
     public IQueryable<TEntity> GetAll<TEntity>() where TEntity : class
         => base.Set<TEntity>();
+
+    public TEntity? GetEntity<TEntity>(params object?[]? keys) where TEntity : class
+         => base.Find<TEntity>(keys);
+
+
 
     public void Create<TEntity>(TEntity entity) where TEntity : class
     {
