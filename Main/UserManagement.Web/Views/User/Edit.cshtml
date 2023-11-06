@@ -10,25 +10,24 @@
                 <input type="hidden" id="Id" name="Id" value="@Model.Id" />
                 <tr>
                     <th> <label for="Forename">Forename</label> </th>
-                    <td> <input type="text" name="Forename" value="@Model.Forename" required
-                            title="Please enter a Forename"></td>
+                    <td> <input type="text" name="Forename" value="@Model.Forename" pattern="[A-Za-z\s]+"
+                            title="Please enter a valid name (letters and spaces only)" required></td>
 
                 </tr>
                 <tr>
                     <th><label for="Surname">Surname</label></th>
-                    <td> <input type="text" name="Surname" value="@Model.Surname" required
-                            title="Please enter a Surname"></td>
+                    <td> <input type="text" name="Surname" value="@Model.Surname" pattern="[A-Za-z\s]+"
+                            title="Please enter a valid name (letters and spaces only)" required></td>
                 </tr>
                 <tr>
                     <th><label for="email">Email</label></th>
-                    <td> <input type="email" name="email" value="@Model.Email" required title="Please enter an Email">
+                    <td> <input type="email" name="email" value="@Model.Email" required>
                     </td>
                 </tr>
                 <tr>
                     <th><label for="DateOfBirth">D.O.B.</label></th>
                     <td> <input type="date" min="1900-01-01" max="@DateTime.Now.ToString("yyyy-MM-dd")"
-                            name="DateOfBirth" value="@Model.DateOfBirth.ToString("yyyy-MM-dd")" required
-                            title="Please enter an Date of Birth"></td>
+                            name="DateOfBirth" value="@Model.DateOfBirth.ToString("yyyy-MM-dd")" required></td>
 
                 </tr>
                 <tr>
