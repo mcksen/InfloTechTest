@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace UserManagement.Data;
 
@@ -29,7 +27,7 @@ public interface IDataContext
     void Create<TEntity>(TEntity entity) where TEntity : class;
 
     /// <summary>
-    /// Uodate an existing item matching the ID
+    /// Update an existing item matching the ID
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     /// <param name="entity"></param>
@@ -40,4 +38,5 @@ public interface IDataContext
 
     void Delete<TEntity>(TEntity entity) where TEntity : class;
     Task<int> DeleteAsync<TEntity>(TEntity entity) where TEntity : class;
+    Task<int> CreateAsync<TEntity>(TEntity entity) where TEntity : class;
 }

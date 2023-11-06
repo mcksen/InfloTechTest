@@ -1,4 +1,4 @@
-using System;
+
 using System.Linq;
 using System.Threading.Tasks;
 using UserManagement.Models;
@@ -38,6 +38,28 @@ public class UsersController : Controller
         if (user != null)
         {
             await _userService.DeleteUser(user);
+            return List();
+        }
+        else
+        {
+            return View("Error");
+        }
+
+    }
+
+    [HttpGet("add")]
+    public ViewResult Add()
+    {
+        return View("Add");
+
+    }
+    [HttpPost("saveNewUser")]
+    public async Task<IActionResult> SaveNewUser([FromForm] User user)
+    {
+
+        if (user != null)
+        {
+            await _userService.AddUser(user);
             return List();
         }
         else

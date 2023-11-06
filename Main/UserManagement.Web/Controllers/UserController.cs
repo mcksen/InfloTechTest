@@ -1,9 +1,4 @@
-using System;
-using System.Data.Common;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using UserManagement.Models;
 using UserManagement.Services.Domain.Interfaces;
 using UserManagement.Web.Models.Users;
@@ -15,11 +10,9 @@ public class UserController : Controller
 {
 
     private readonly IUserService _userService;
-    public UserController(IUserService userService)
-    {
-        _userService = userService;
+    public UserController(IUserService userService) => _userService = userService;
 
-    }
+
 
 
     [HttpGet("view")]
@@ -36,9 +29,13 @@ public class UserController : Controller
             model.Email = user.Email;
             model.DateOfBirth = user.DateOfBirth.ToString("dd/MM/yyyy");
             model.IsActive = user.IsActive ? "Yes" : "No";
-
+            return View(nameof(View), model);
         }
-        return View(nameof(View), model);
+        else
+        {
+            return View("Error");
+        }
+
     }
 
 
@@ -55,25 +52,30 @@ public class UserController : Controller
             model.Email = user.Email;
             model.DateOfBirth = user.DateOfBirth;
             model.IsActive = user.IsActive;
+            return View(nameof(Edit), model);
+        }
+        else
+        {
+            return View("Error");
         }
 
-        return View(nameof(Edit), model);
+
     }
 
-    [HttpPost("save")]
+    [HttpPost("saveEdit")]
     public async Task<IActionResult> SaveEdit([FromForm] User user)
     {
-        User userToUpdate = new User();
-        userToUpdate.Id = user.Id;
-        userToUpdate.Forename = user.Forename;
-        userToUpdate.Surname = user.Surname;
-        userToUpdate.Email = user.Email;
-        userToUpdate.DateOfBirth = user.DateOfBirth;
-        userToUpdate.IsActive = user.IsActive;
 
-        await _userService.EditUser(user);
+        if (user != null)
+        {
+            await _userService.EditUser(user);
+            return View(user.Id);
+        }
+        else
+        {
+            return View("Error");
+        }
 
-        return View(user.Id);
     }
 
 

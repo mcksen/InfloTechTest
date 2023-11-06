@@ -19,6 +19,8 @@ public interface IUserService
     User? GetUser(long id);
     Task<int> EditUser(User user);
     Task<int> DeleteUser(User user);
+    Task<int> AddUser(User user);
     IEnumerable<User> GetAll();
+
 
 }
