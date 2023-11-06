@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using UserManagement.Models;
@@ -50,8 +51,13 @@ public class DataContext : DbContext, IDataContext
     {
         base.Update(entity);
         SaveChanges();
+    }
+    public async Task<int> UpdateAsync<TEntity>(TEntity entity) where TEntity : class
+    {
+        base.Update(entity);
 
-
+        var result = await SaveChangesAsync();
+        return result;
     }
 
 

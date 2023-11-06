@@ -9,6 +9,7 @@ using UserManagement.Data;
 using UserManagement.Models;
 using UserManagement.Services.Domain.Interfaces;
 
+
 namespace UserManagement.Services.Domain.Implementations;
 
 public class UserService : IUserService
@@ -20,7 +21,6 @@ public class UserService : IUserService
 
     }
 
-    public event StateChangeEvent? onUserUpdated;
 
 
 
@@ -30,15 +30,11 @@ public class UserService : IUserService
 
     public User? GetUser(long id) => _dataAccess.GetEntity<User>(id);
     public IEnumerable<User> GetAll() => _dataAccess.GetAll<User>();
-    public void EditUser(User user)
+    public async Task<int> EditUser(User user)
     {
-        void TriggerUserUpdated(object? sender, SavedChangesEventArgs e)
-        {
-            onUserUpdated?.Invoke(user);
-            _dataAccess.SavedChanges -= TriggerUserUpdated;
-        }
-        _dataAccess.SavedChanges += TriggerUserUpdated;
-        _dataAccess.Update(user);
+
+        var result = await _dataAccess.UpdateAsync(user);
+        return result;
 
     }
 

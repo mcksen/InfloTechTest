@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using UserManagement.Models;
 
 
@@ -8,7 +9,7 @@ public delegate void StateChangeEvent(User user);
 
 public interface IUserService
 {
-    event StateChangeEvent? onUserUpdated;
+
     /// <summary>
     /// Return users by active state
     /// </summary>
@@ -16,6 +17,6 @@ public interface IUserService
     /// <returns></returns>
     IEnumerable<User> FilterByActive(bool isActive);
     User? GetUser(long id);
-    void EditUser(User user);
+    Task<int> EditUser(User user);
     IEnumerable<User> GetAll();
 }

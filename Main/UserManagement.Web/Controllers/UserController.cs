@@ -61,7 +61,7 @@ public class UserController : Controller
     }
 
     [HttpPost("save")]
-    public void HandleSaveButtonClick([FromForm] User user)
+    public async Task<IActionResult> HandleSaveButtonClick([FromForm] User user)
     {
         User userToUpdate = new User();
         userToUpdate.Id = user.Id;
@@ -70,13 +70,11 @@ public class UserController : Controller
         userToUpdate.Email = user.Email;
         userToUpdate.DateOfBirth = user.DateOfBirth;
         userToUpdate.IsActive = user.IsActive;
-        _userService.onUserUpdated += HandleUserUpdated;
-        _userService.EditUser(user);
+
+        await _userService.EditUser(user);
+
+        return View(user.Id);
     }
-    private void HandleUserUpdated(User user)
-    {
-        View(user.Id);
-        _userService.onUserUpdated -= HandleUserUpdated;
-    }
+
 
 }

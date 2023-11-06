@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace UserManagement.Data;
@@ -13,7 +14,7 @@ public interface IDataContext
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     /// <returns></returns>
-    event EventHandler<SavedChangesEventArgs>? SavedChanges;
+
 
     IQueryable<TEntity> GetAll<TEntity>() where TEntity : class;
     TEntity? GetEntity<TEntity>(params object?[]? keys) where TEntity : class;
@@ -34,6 +35,8 @@ public interface IDataContext
     /// <param name="entity"></param>
     /// <returns></returns>
     void Update<TEntity>(TEntity entity) where TEntity : class;
+    Task<int> UpdateAsync<TEntity>(TEntity entity) where TEntity : class;
+
 
     void Delete<TEntity>(TEntity entity) where TEntity : class;
 }

@@ -37,7 +37,8 @@
 <div>
     <div class="btn-group" role="group">
 
-        <a asp-controller="user" asp-action="edit" class="btn btn-primary float-end" style="margin: 20px;">Edit</a>
+        <a asp-controller="user" asp-action="edit" asp-route-id="@Model.Id" class="btn btn-primary float-end"
+            style="margin: 20px;">Edit</a>
 
         <a asp-controller="user" asp-action="delete" class="btn btn-primary float-end" style="margin: 20px;">Delete</a>
 
