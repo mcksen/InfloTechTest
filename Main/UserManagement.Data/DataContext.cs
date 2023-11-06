@@ -1,12 +1,14 @@
 using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using UserManagement.Models;
 
 namespace UserManagement.Data;
 
 public class DataContext : DbContext, IDataContext
 {
+
     public DataContext() => Database.EnsureCreated();
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
@@ -48,11 +50,15 @@ public class DataContext : DbContext, IDataContext
     {
         base.Update(entity);
         SaveChanges();
+
+
     }
+
 
     public void Delete<TEntity>(TEntity entity) where TEntity : class
     {
         base.Remove(entity);
         SaveChanges();
     }
+
 }

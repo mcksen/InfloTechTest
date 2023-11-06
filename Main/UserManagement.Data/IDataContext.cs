@@ -1,15 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace UserManagement.Data;
 
 public interface IDataContext
 {
+
     /// <summary>
     /// Get a list of items
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     /// <returns></returns>
+    event EventHandler<SavedChangesEventArgs>? SavedChanges;
+
     IQueryable<TEntity> GetAll<TEntity>() where TEntity : class;
     TEntity? GetEntity<TEntity>(params object?[]? keys) where TEntity : class;
 

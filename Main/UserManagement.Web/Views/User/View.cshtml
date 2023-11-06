@@ -1,4 +1,4 @@
-@model UserManagement.Web.Models.Users.UserViewModel
+@model UserManagement.Web.Models.Users.ViewUserViewModel
 
 <h2>User View</h2>
 <div class="table-responsive">
@@ -20,12 +20,12 @@
                 <td>@Model.Email</td>
             </tr>
             <tr>
-                <th>DateOfBirth</th>
+                <th>D.O.B.</th>
                 <td>@Model.DateOfBirth</td>
             </tr>
             <tr>
                 <th>Account Active</th>
-                <td>@Model.IsActive</td>
+                <td>@Model.IsActive </td>
             </tr>
 
         </tbody>
@@ -42,6 +42,8 @@
         <a asp-controller="user" asp-action="delete" class="btn btn-primary float-end" style="margin: 20px;">Delete</a>
 
     </div>
-
+    <a asp-controller="users" asp-action="list" class="btn btn-primary float-end">
+        Back to List
+    </a>
 
 </div>

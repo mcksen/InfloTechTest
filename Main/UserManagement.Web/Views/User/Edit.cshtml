@@ -1,0 +1,46 @@
+@model UserManagement.Web.Models.Users.EditUserViewModel
+
+<h2>Edit</h2>
+<form method="POST" asp-coroller="user" action="save">
+    <div class="table-responsive">
+        <table class="table table-">
+            <br>
+            <br>
+            <tbody>
+                <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+                <tr>
+                    <th> <label for="Forename">Forename</label> </th>
+                    <td> <input type="text" name="Forename" value="@Model.Forename"></td>
+
+                </tr>
+                <tr>
+                    <th><label for="Surname">Surname</label></th>
+                    <td> <input type="text" name="Surname" value="@Model.Surname"></td>
+                </tr>
+                <tr>
+                    <th><label for="email">Email</label></th>
+                    <td> <input type="email" name="email" value="@Model.Email"></td>
+                </tr>
+                <tr>
+                    <th><label for="DateOfBirth">D.O.B.</label></th>
+                    <td> <input type="date" name="DateOfBirth" value="@Model.DateOfBirth.ToString("yyyy-MM-dd")"></td>
+                </tr>
+                <tr>
+                    <th><label for="Account Active">Account Active</label> </th>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <input type="radio" name="Account Active" value="true" checked="@Model.IsActive"> Yes
+                            <input type="radio" name="Account Active" value="false" checked="@(!Model.IsActive)"> No
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="form group-row">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a asp-coroller="users" asp-action="list" class="btn btn-primary font-end"> Cancel </a>
+    </div>
+</form>
+<br>
+<br>
