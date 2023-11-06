@@ -61,7 +61,7 @@ public class UserController : Controller
     }
 
     [HttpPost("save")]
-    public async Task<IActionResult> HandleSaveButtonClick([FromForm] User user)
+    public async Task<IActionResult> SaveEdit([FromForm] User user)
     {
         User userToUpdate = new User();
         userToUpdate.Id = user.Id;

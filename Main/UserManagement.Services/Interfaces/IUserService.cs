@@ -18,5 +18,7 @@ public interface IUserService
     IEnumerable<User> FilterByActive(bool isActive);
     User? GetUser(long id);
     Task<int> EditUser(User user);
+    Task<int> DeleteUser(User user);
     IEnumerable<User> GetAll();
+
 }

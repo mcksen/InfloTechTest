@@ -37,6 +37,13 @@ public class UserService : IUserService
         return result;
 
     }
+    public async Task<int> DeleteUser(User user)
+    {
+
+        var result = await _dataAccess.DeleteAsync(user);
+        return result;
+
+    }
 
 
 }

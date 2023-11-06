@@ -40,7 +40,8 @@
         <a asp-controller="user" asp-action="edit" asp-route-id="@Model.Id" class="btn btn-primary float-end"
             style="margin: 20px;">Edit</a>
 
-        <a asp-controller="user" asp-action="delete" class="btn btn-primary float-end" style="margin: 20px;">Delete</a>
+        <a asp-controller="users" asp-action="delete" class="btn btn-primary float-end" asp-route-id="@Model.Id"
+            style="margin: 20px;">Delete</a>
 
     </div>
     <a asp-controller="users" asp-action="list" class="btn btn-primary float-end">

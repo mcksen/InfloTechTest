@@ -66,5 +66,11 @@ public class DataContext : DbContext, IDataContext
         base.Remove(entity);
         SaveChanges();
     }
+    public async Task<int> DeleteAsync<TEntity>(TEntity entity) where TEntity : class
+    {
+        base.Remove(entity);
+        var result = await SaveChangesAsync();
+        return result;
+    }
 
 }

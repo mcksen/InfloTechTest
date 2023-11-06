@@ -48,7 +48,8 @@
                                         asp-route-id="@item.Id">View</a></li>
                                 <li><a class="dropdown-item" asp-controller="user" asp-action="edit"
                                         asp-route-id="@item.Id">Edit</a></li>
-                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                                <li><a class="dropdown-item" asp-controller="users" asp-action="delete"
+                                        asp-route-id="@item.Id"> Delete</a></li>
 
 
 
@@ -63,10 +64,12 @@
 </div>
 
 <div>
-    <div class="btn-group" role="group">
+    <div class=" btn-group" role="group">
         <a asp-controller="users" asp-action="list" class="btn btn-default">Show All</a>
-        <a asp-controller="users" asp-action="active" class="btn btn-default">Active Only</a>
-        <a asp-controller="users" asp-action="inactive" class="btn btn-default">Non Active</a>
+        <a asp-controller="users" asp-action="active" class="btn btn-default">Active
+            Only</a>
+        <a asp-controller="users" asp-action="inactive" class="btn btn-default">Non
+            Active</a>
     </div>
 
     <a href="#" class="btn btn-primary float-end">

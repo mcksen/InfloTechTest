@@ -39,4 +39,5 @@ public interface IDataContext
 
 
     void Delete<TEntity>(TEntity entity) where TEntity : class;
+    Task<int> DeleteAsync<TEntity>(TEntity entity) where TEntity : class;
 }

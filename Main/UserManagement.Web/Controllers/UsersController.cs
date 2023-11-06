@@ -1,4 +1,6 @@
+using System;
 using System.Linq;
+using System.Threading.Tasks;
 using UserManagement.Models;
 using UserManagement.Services.Domain.Interfaces;
 using UserManagement.Web.Models.Users;
@@ -29,7 +31,21 @@ public class UsersController : Controller
         return GetViewResult(_userService.FilterByActive(false));
     }
 
+    [HttpGet("delete")]
+    public async Task<IActionResult> Delete(long id)
+    {
+        User? user = _userService.GetUser(id);
+        if (user != null)
+        {
+            await _userService.DeleteUser(user);
+            return List();
+        }
+        else
+        {
+            return View("Error");
+        }
 
+    }
 
     private ViewResult GetViewResult(IEnumerable<User> users)
     {
