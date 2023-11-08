@@ -2,43 +2,23 @@
 
 <h2>Logs List</h2>
 
-<div class="table-responsive">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>EntityId</th>
-                <th> EntityType</th>
-                <th> ActionType</th>
-                <th>Timestamp </th>
-                <th> Message</th>
-                <th style="width: 1px;"></th>
-            </tr>
-        </thead>
+<div>
+    <table class="table">
         <tbody>
             @foreach (var item in Model.Items)
             {
-                    <tr>
-                        <td>
-                        @item.Id
-                        </td>
-                        <td>
-                        @item.EntityId
-                        </td>
-                        <td>
-                        @item.EntityType
-                        </td>
-                        <td>
-                        @item.ActionType
-                        </td>
-                        <td>
-                        @item.Timestamp
-                        </td>
-                        <td>
+                <tr class="log-entry" onclick="toggleDetails(this)">
+                    <td class="log-summary">
                         @item.Message
-                        </td>
-
-                    </tr>
+                    </td>
+                </tr>
+                <tr class="log-details" style="display:none;">
+                    <td>Id: @item.Id</td>
+                    <td>EntityId: @item.EntityId</td>
+                    <td>EntityType: @item.EntityType</td>
+                    <td>ActionType: @item.ActionType</td>
+                    <td>Date: @item.Timestamp</td>
+                </tr>
             }
         </tbody>
     </table>
@@ -46,5 +26,21 @@
 
 <div>
     <a asp-controller="users" asp-action="list" class="btn btn-primary font-end"> Return </a>
-
 </div>
+
+
+
+@section Scripts {
+    <script type="text/javascript">
+        function toggleDetails(element) {
+            var details = element.nextElementSibling; 
+            if (details.style.display === "none") {
+                details.style.display = "block";
+            } else {
+                details.style.display = "none";
+            }
+        }
+    
+    </script>
+}
+ 
