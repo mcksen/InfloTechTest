@@ -1,11 +1,11 @@
-using System;
+
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+
+
 using UserManagement.Models;
-using UserManagement.Services.Domain.Interfaces;
+
 using UserManagement.Web.Models.Logs;
-using UserManagement.Web.Models.Users;
+
 
 namespace UserManagement.WebMS.Controllers;
 
@@ -24,9 +24,17 @@ public class UserLogsController : Controller
         return GetViewResult(_logService.GetLogs<User>());
     }
 
+    [HttpPost("filterByDate")]
+    public ViewResult FilterByDate(LogsViewModel model)
+    {
+
+        return GetViewResult(_logService.FilterByDate(model.MinDateTime, model.MaxDateTime));
+    }
+
 
     private ViewResult GetViewResult(IEnumerable<Log> logs)
     {
+
 
         var items = logs.Select(p => new LogsItemViewModel
         {
@@ -38,14 +46,17 @@ public class UserLogsController : Controller
             Message = p.Message,
         });
 
-        var model = new LogsViewModel
 
+        var model = new LogsViewModel
         {
             Items = items.ToList()
         };
 
+
+
         return View(nameof(List), model);
     }
+
 }
 
 

@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+
+
 using UserManagement.Data;
 using UserManagement.Models;
 
@@ -14,5 +14,6 @@ public class LogService : ILogService
 
     public IEnumerable<Log> GetLogs<T>() => _context.GetAll<Log>().Where(x => x.EntityType == (typeof(T).Name));
     public IEnumerable<Log> GetLogsById<T>(long id) => GetLogs<T>().Where(x => x.EntityId == id);
+    public IEnumerable<Log> FilterByDate(DateTime min, DateTime max) => _context.GetAll<Log>().Where(p => p.Timestamp <= max && p.Timestamp >= min);
 
 }
