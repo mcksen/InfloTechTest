@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using UserManagement.Models;
 
 namespace UserManagement.Data;
@@ -11,12 +12,20 @@ public class DataContext : DbContext, IDataContext
 
     public DataContext() => Database.EnsureCreated();
 
+
+
+
+
     protected override void OnConfiguring(DbContextOptionsBuilder options)
         => options.UseInMemoryDatabase("UserManagement.Data.DataContext");
 
+
     protected override void OnModelCreating(ModelBuilder model)
-        => model.Entity<User>().HasData(new[]
-        {
+    {
+
+
+        model.Entity<User>().HasData(new[]
+       {
             new User { Id = 1, Forename = "Peter", Surname = "Loew", Email = "ploew@example.com", DateOfBirth = new DateTime(1985,12,6), IsActive = true },
             new User { Id = 2, Forename = "Benjamin Franklin", Surname = "Gates", Email = "bfgates@example.com", DateOfBirth = new DateTime(1977,10,14), IsActive = true },
             new User { Id = 3, Forename = "Castor", Surname = "Troy", Email = "ctroy@example.com", DateOfBirth = new DateTime(1999,2,25), IsActive = false },
@@ -28,9 +37,19 @@ public class DataContext : DbContext, IDataContext
             new User { Id = 9, Forename = "Damon", Surname = "Macready", Email = "dmacready@example.com", DateOfBirth = new DateTime(2000,1,1), IsActive = false },
             new User { Id = 10, Forename = "Johnny", Surname = "Blaze", Email = "jblaze@example.com",DateOfBirth = new DateTime(1996,12,3),  IsActive = true },
             new User { Id = 11, Forename = "Robin", Surname = "Feld", Email = "rfeld@example.com",DateOfBirth = new DateTime(1979,6,22), IsActive = true },
+
         });
 
+
+
+
+    }
+
+
+
+
     public DbSet<User>? Users { get; set; }
+    public DbSet<Log>? Logs { get; set; }
 
     public IQueryable<TEntity> GetAll<TEntity>() where TEntity : class
         => base.Set<TEntity>();
@@ -40,41 +59,50 @@ public class DataContext : DbContext, IDataContext
 
 
 
-    public void Create<TEntity>(TEntity entity) where TEntity : class
+    public void Create<TEntity>(TEntity entity) where TEntity : class, ILoggable
     {
         base.Add(entity);
+        Logs?.Add(new Log(entity, Log.actionType.Add));
+
         SaveChanges();
     }
-    public async Task<int> CreateAsync<TEntity>(TEntity entity) where TEntity : class
+    public async Task<int> CreateAsync<TEntity>(TEntity entity) where TEntity : class, ILoggable
     {
 
         base.Add(entity);
+        Logs?.Add(new Log(entity, Log.actionType.Add));
         var result = await SaveChangesAsync();
         return result;
     }
 
-    public new void Update<TEntity>(TEntity entity) where TEntity : class
+    public new void Update<TEntity>(TEntity entity) where TEntity : class, ILoggable
     {
         base.Update(entity);
+        Logs?.Add(new Log(entity, Log.actionType.Edit));
+
         SaveChanges();
     }
-    public async Task<int> UpdateAsync<TEntity>(TEntity entity) where TEntity : class
+    public async Task<int> UpdateAsync<TEntity>(TEntity entity) where TEntity : class, ILoggable
     {
         base.Update(entity);
+        Logs?.Add(new Log(entity, Log.actionType.Edit));
 
         var result = await SaveChangesAsync();
         return result;
     }
 
 
-    public void Delete<TEntity>(TEntity entity) where TEntity : class
+    public void Delete<TEntity>(TEntity entity) where TEntity : class, ILoggable
     {
         base.Remove(entity);
+        Logs?.Add(new Log(entity, Log.actionType.Delete));
         SaveChanges();
     }
-    public async Task<int> DeleteAsync<TEntity>(TEntity entity) where TEntity : class
+    public async Task<int> DeleteAsync<TEntity>(TEntity entity) where TEntity : class, ILoggable
     {
         base.Remove(entity);
+
+        Logs?.Add(new Log(entity, Log.actionType.Delete));
         var result = await SaveChangesAsync();
         return result;
     }
