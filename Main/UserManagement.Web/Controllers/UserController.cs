@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using UserManagement.Models;
 using UserManagement.Services.Domain.Interfaces;
@@ -10,7 +11,12 @@ public class UserController : Controller
 {
 
     private readonly IUserService _userService;
-    public UserController(IUserService userService) => _userService = userService;
+    private readonly ILogService _logService;
+    public UserController(IUserService userService, ILogService logService)
+    {
+        _userService = userService;
+        _logService = logService;
+    }
 
 
 
@@ -29,6 +35,7 @@ public class UserController : Controller
             model.Email = user.Email;
             model.DateOfBirth = user.DateOfBirth.ToString("dd/MM/yyyy");
             model.IsActive = user.IsActive ? "Yes" : "No";
+            model.userLogs = _logService.GetLogsById<User>(id).ToList();
             return View(nameof(View), model);
         }
         else

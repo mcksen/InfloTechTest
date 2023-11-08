@@ -49,3 +49,48 @@
     </a>
 
 </div>
+<br>
+<br>
+<h2>Logs List</h2>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>EntityId</th>
+                <th> EntityType</th>
+                <th> ActionType</th>
+                <th>Timestamp </th>
+                <th> Message</th>
+                <th style="width: 1px;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.userLogs)
+            {
+                <tr>
+                    <td>
+                        @item.Id
+                    </td>
+                    <td>
+                        @item.EntityId
+                    </td>
+                    <td>
+                        @item.EntityType
+                    </td>
+                    <td>
+                        @item.ActionType
+                    </td>
+                    <td>
+                        @item.Timestamp
+                    </td>
+                    <td>
+                        @item.Message
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
